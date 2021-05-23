@@ -18,15 +18,27 @@ var userTryIndex = 0;
 
 $(document).on("keydown", function() {
   if (!gameStarted) {
-    gameStarted = true;
-    level = 0;
-    userClickedPattern = [];
-    gamePattern = [];
-    userTryIndex = 0;
-    $("#level-title").text("Level " + level);
-    nextSequence();
+    startGame();
   }
 })
+
+$(".startButton").on("click",function() {
+  console.log("Start Button Clicked");
+  if (!gameStarted) {
+    startGame();
+  }
+})
+
+function startGame(){
+  gameStarted = true;
+  level = 0;
+  userClickedPattern = [];
+  gamePattern = [];
+  userTryIndex = 0;
+  $("#level-title").text("Level " + level);
+  $(".startButton").hide();
+  nextSequence();
+}
 
 $(".btn").on("click", function() {
   if (gameStarted) {
@@ -48,7 +60,8 @@ $(".btn").on("click", function() {
     }
   } else { // user input was wrong
     gameStarted = false;
-    $("#level-title").text("Game Over, Press any key to restart");
+    $("#level-title").html("Game Over, Press any key to restart or click Start button");
+    $(".startButton").show();
     playSound("wrong")
     $("body").addClass("game-over");
     setTimeout(function(){

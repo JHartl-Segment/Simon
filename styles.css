@@ -17,6 +17,10 @@ body {
 
 }
 
+.startButton {
+  background-color: purple;
+}
+
 .btn {
   margin: 25px;
   display: inline-block;
